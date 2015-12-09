@@ -6,7 +6,7 @@
 /*   By: aouloube <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:54:00 by aouloube          #+#    #+#             */
-/*   Updated: 2015/12/09 16:37:21 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/09 19:06:42 by aouloube         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	ft_tchecker(char b[26][20])
 	}
 }
 
-void	ft_diesechecker(char b[26][20])
+int		ft_diesechecker(char b[26][20])
 {
 	int		i;
 	int		y;
@@ -121,6 +121,32 @@ void	ft_diesechecker(char b[26][20])
 			if (count != 4)
 				ft_error("# number is incorrect");
 		count = (i == 20) ? 0 : count;
+		i = (i == 20) ? 0 : i;
+		i++;
+	}
+	return (y + 1);
+}
+
+void	ft_intab(int **tab, char b[26][20])
+ {
+	int		i;
+	int		y;
+	int		v;
+	int		t;
+
+	i = 0;
+	y = 0;
+	v = 0;
+	while (b[y][i])
+	{
+		if (ft_isalpha(b[y][i]))
+		{
+			tab[y][v] = i;
+			v++;
+			//printf("%c", b[y][v]);
+		}
+		y = (i == 20) ? y + 1 : y;
+		v = (i == 20) ? 0 : v;
 		i = (i == 20) ? 0 : i;
 		i++;
 	}
@@ -151,6 +177,42 @@ void	ft_charchecker(char b[26][20])
 	}
 }
 
+int		ft_sqr(int nb)
+{
+	int i;
+
+	i = 1;
+	while ((i * i) < nb)
+		i++;
+	return (i);
+}
+
+void	ft_solver(int **intab, int size)
+{
+	char f[1024];
+	int i;
+	int y;
+	int z;
+	int min;
+
+	i = 0;
+	y = 0;
+	z = 0;
+	min = ft_sqr(size * 4);
+	while (i < size)
+	{
+		
+		while (y < 4)
+		{
+			if ()
+			y++;
+			z++;
+		}
+		i++;
+	}
+
+}
+
 void	ft_ttry(char buff[26][20])
 {
 	int		i;
@@ -169,19 +231,32 @@ void	ft_ttry(char buff[26][20])
 	}
 }
 
+
 int		main(int argc, char **argv)
 {
 	int		fd;
 	char	file[560];
 	char	buff[26][20];
+	int		**intab;
+	int		i;
+	int 	size;
 
 	if (argc == 2)
 	{
 		ft_readfile(file, open(argv[1], O_RDONLY));
 		ft_tab2m(file, buff);
 		ft_tchecker(buff);
-		ft_diesechecker(buff);
-		ft_putstr(buff[0]);
+		size = ft_diesechecker(buff);
+		intab = (int **)malloc(sizeof(int *) * size);
+		i = 0;
+		while (i < size)
+		{
+			intab[i] = malloc(sizeof(int) * 4);
+			i++;
+		}
+		ft_intab(intab, buff);
+		ft_putnbr(ft_sqr(10));
+		//ft_putstr(buff[0]);
 		ft_charchecker(buff);
 		//ft_ttry(buff);
 	}
