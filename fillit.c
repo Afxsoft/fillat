@@ -6,7 +6,7 @@
 /*   By: aouloube <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:54:00 by aouloube          #+#    #+#             */
-/*   Updated: 2015/12/09 12:41:02 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/09 16:37:21 by nlagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void	ft_tab2m(char *file, char buff[26][20])
 		if (file[i] != '.' && file[i] != '#' && file[i] != '\n')
 			ft_error("The character used is not allowed");
 		buff[y][v] = file[i];
-		if (size == 1 && file[i] == '\n')
-			ft_error("There is a \n at the last element");
-		else if (size == 1 && v != 18)
-			ft_error("capout");
 		if (file[i] == '\n' && file [i - 1] == '\n')
 		{
+			if (size == 1)
+				ft_error("There is a return at the last element");
+			else if (size == 1 && v != 18)
+				ft_error("capout");
 			y++;
 			v = 0;
 		}
