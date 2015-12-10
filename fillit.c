@@ -6,7 +6,7 @@
 /*   By: aouloube <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/03 13:54:00 by aouloube          #+#    #+#             */
-/*   Updated: 2015/12/09 19:06:42 by aouloube         ###   ########.fr       */
+/*   Updated: 2015/12/10 16:52:08 by aouloube         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+typedef struct		s_shape
+{
+	char			*str;
+	int				lenght;
+	char			last_index;
+}					t_shape;
+
 
 void	ft_error(char *msg)
 {
@@ -143,12 +151,34 @@ void	ft_intab(int **tab, char b[26][20])
 		{
 			tab[y][v] = i;
 			v++;
-			//printf("%c", b[y][v]);
 		}
 		y = (i == 20) ? y + 1 : y;
 		v = (i == 20) ? 0 : v;
 		i = (i == 20) ? 0 : i;
 		i++;
+	}
+}
+
+void	ft_intaborder(int **intab, int size)
+ {
+	int		i;
+	int		y;
+	int		v;
+
+	y = 0;
+	while (y < size)
+	{
+		i = 0;
+		v = 0;
+		while (intab[y][i])
+		{
+			printf("[%d - %d]", i , intab[y][i]);
+			if (i == 0 && intab[y][i] != 0)
+				v = intab[y][i];
+			intab[y][i] -= v;
+		 i++;
+		}
+		y++;
 	}
 }
 
@@ -187,6 +217,39 @@ int		ft_sqr(int nb)
 	return (i);
 }
 
+void	ft_shape(int **intab, int size)
+{
+	int		i;
+	int		y;
+	int		z;
+	i = 0;
+	y = 0;
+	while (i < size)
+	{
+		y = 0;
+		z = 1;
+		while (y < 16)
+		{
+			if (intab[i][y] == y )
+				ft_putchar('A');
+			else 
+				ft_putchar('.');
+			
+		/*if (z == 4)
+		{
+			ft_putchar('\n');
+			z = 1;
+		}
+		else
+			z++;*/
+		y++;
+			
+
+		}
+		i++;
+	}
+}
+
 void	ft_solver(int **intab, int size)
 {
 	char f[1024];
@@ -204,9 +267,8 @@ void	ft_solver(int **intab, int size)
 		
 		while (y < 4)
 		{
-			if ()
+		
 			y++;
-			z++;
 		}
 		i++;
 	}
@@ -255,8 +317,8 @@ int		main(int argc, char **argv)
 			i++;
 		}
 		ft_intab(intab, buff);
-		ft_putnbr(ft_sqr(10));
-		//ft_putstr(buff[0]);
+		ft_intaborder(intab, size);
+		ft_shape(intab, size);
 		ft_charchecker(buff);
 		//ft_ttry(buff);
 	}
