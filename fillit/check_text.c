@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   text_file.c                                        :+:      :+:    :+:   */
+/*   check_text.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aouloube <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 10:18:46 by aouloube          #+#    #+#             */
-/*   Updated: 2015/12/11 14:14:15 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:30:17 by nlagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,18 @@ t_tetris	*read_file(char *file, t_tetris *tab)
 	char	buf[1];
 
 	fd = open(file, O_RDONLY);
-	tab[0].shape = read_one(fd, 0);
+	tab[0].form = read_one(fd, 0);
 	tab[0].last_try = -1;
 	i = 1;
 	while (read(fd, buf, 1))
 	{
 		if (*buf != '\n')
 			exit_error(10);
-		tab[i].shape = read_one(fd, i);
+		tab[i].form = read_one(fd, i);
 		tab[i].last_try = -1;
 		i++;
 	}
 	close(fd);
-	check_tetris(tab[0].shape);
+	check_tetris(tab[0].form);
 	return (tab);
 }

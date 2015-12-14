@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   result.c                                           :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aouloube <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/10 11:48:14 by aouloube          #+#    #+#             */
-/*   Updated: 2015/12/11 14:13:49 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:34:33 by nlagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,21 @@ void	delete_tetris(t_result *res, t_tetris tetris)
 	i = 0;
 	while (i < (res->size * res->size))
 	{
-		if (res->tab[i] == tetris.shape[tetris.place])
+		if (res->tab[i] == tetris.form[tetris.spot])
 			res->tab[i] = '.';
 		i++;
 	}
 }
 
-void	put_piece(t_result *res, t_tetris piece)
+void	place_form(t_result *res, t_tetris piece)
 {
 	int i;
 
-	i = piece.place;
+	i = piece.spot;
 	while (i < 16)
 	{
-		if (piece.shape[i] != '.')
-			res->tab[coordinate_transformation(i, res, piece)] = piece.shape[i];
+		if (piece.form[i] != '.')
+			res->tab[coordinate_transformation(i, res, piece)] = piece.form[i];
 		i++;
 	}
 }
