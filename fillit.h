@@ -6,7 +6,7 @@
 /*   By: nlagache <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 18:10:52 by nlagache          #+#    #+#             */
-/*   Updated: 2015/12/11 14:13:18 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:34:35 by nlagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef struct	s_result
 
 typedef struct	s_tetris
 {
-	char		*shape;
-	int			place;
+	char		*form;
+	int			spot;
 	int			last_try;
 }				t_tetris;
 
 int				coordinate_transformation(int i, t_result *res, t_tetris piece);
-void			put_piece(t_result *res, t_tetris piece);
+void			place_form(t_result *res, t_tetris piece);
 void			delete_tetris(t_result *res, t_tetris tetris);
 void			print_result(t_result *res);
 int				ft_sqrt(int nb);

@@ -6,7 +6,7 @@
 /*   By: nlagache <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/08 14:24:51 by nlagache          #+#    #+#             */
-/*   Updated: 2015/12/11 14:11:17 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:36:29 by nlagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_solve_tetris(t_result *res, t_tetris *tetris, int index)
 {
-	if (tetris[index].shape == NULL)
+	if (tetris[index].form == NULL)
 	{
 		print_result(res);
 		exit(0);
@@ -37,8 +37,8 @@ void	ft_solve_tetris(t_result *res, t_tetris *tetris, int index)
 
 int		coordinate_transformation(int i, t_result *res, t_tetris piece)
 {
-	return (((i % 4) - (piece.place % 4))
-			+ (((i / 4) - (piece.place / 4)) * res->size)
+	return (((i % 4) - (piece.spot % 4))
+			+ (((i / 4) - (piece.spot / 4)) * res->size)
 			+ piece.last_try);
 }
 
@@ -50,12 +50,12 @@ char	get_value_in_res(int i, t_result *res, t_tetris piece)
 	if (x >= (res->size * res->size))
 		return ('#');
 	if ((x % res->size) >
-		(coordinate_transformation(piece.place, res, piece) % res->size))
+		(coordinate_transformation(piece.spot, res, piece) % res->size))
 	{
-		if ((i % 4 < piece.place % 4))
+		if ((i % 4 < piece.spot % 4))
 			return ('#');
 	}
-	else if (i % 4 > piece.place % 4)
+	else if (i % 4 > piece.spot % 4)
 		return ('#');
 	return (res->tab[coordinate_transformation(i, res, piece)]);
 }
@@ -64,10 +64,10 @@ int		fits_in(t_result *res, t_tetris piece)
 {
 	int i;
 
-	i = piece.place;
+	i = piece.spot;
 	while (i < 16)
 	{
-		if (piece.shape[i] != '.')
+		if (piece.form[i] != '.')
 		{
 			if (get_value_in_res(i, res, piece) != '.')
 			{
@@ -86,7 +86,7 @@ int		ft_fit_tetris(t_result *res, t_tetris *piece)
 	{
 		if (fits_in(res, *piece))
 		{
-			put_piece(res, *piece);
+			place_form(res, *piece);
 			return (1);
 		}
 		else

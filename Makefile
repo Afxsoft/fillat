@@ -6,18 +6,18 @@
 #    By: nlagache <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/10 14:17:09 by nlagache          #+#    #+#              #
-#    Updated: 2015/12/11 14:11:41 by nlagache         ###   ########.fr        #
+#    Updated: 2015/12/14 10:00:36 by nlagache         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME = fillit
 
 SRCS = main.c			\
-	   aux_functions.c	\
+	   functions.c		\
 	   solve_tetris.c	\
-	   validation.c 	\
-	   text_file.c 		\
-	   result.c			\
+	   if_valid.c		\
+	   check_text.c		\
+	   print.c			\
 
 CFLAGS = -Wall -Wextra -Werror
 

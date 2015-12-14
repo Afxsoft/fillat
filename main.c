@@ -6,7 +6,7 @@
 /*   By: aouloube <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/02 13:29:09 by aouloube          #+#    #+#             */
-/*   Updated: 2015/12/11 14:10:35 by nlagache         ###   ########.fr       */
+/*   Updated: 2015/12/14 10:35:07 by nlagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	set_place(t_tetris *tab)
 	int j;
 
 	i = 0;
-	while (tab[i].shape != NULL)
+	while (tab[i].form != NULL)
 	{
 		j = 0;
-		while (tab[i].shape[j] == '.')
+		while (tab[i].form[j] == '.')
 			j++;
-		tab[i].place = j;
+		tab[i].spot = j;
 		i++;
 	}
 }
@@ -46,7 +46,7 @@ int		nb_of_pieces(t_tetris *tetris)
 	int i;
 
 	i = 0;
-	while (tetris[i].shape != NULL)
+	while (tetris[i].form != NULL)
 		i++;
 	return (i);
 }
